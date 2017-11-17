@@ -1,6 +1,7 @@
 welcome: Welcome secret agent {{ number[0] }}. Are you ready for your newest mission?
 
-round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
+roundold: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
+round: Would you like an easy or a hard safe?
 
 win: Good job!
 
