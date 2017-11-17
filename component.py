@@ -55,7 +55,11 @@ def setdif(difficulty):
 
 def checkpass(stepone,steptwo,stepthree):
     print 'their response: ',stepone, steptwo, stepthree
-    print 'the right response:', pp.chart[str([str(session.attributes['c']),str(session.attributes['r'])])], pp.places[str(session.attributes['p'])]
+    mc = str(session.attributes['c'])
+    mr = str(session.attributes['r'])
+    mp = str(session.attributes['p'])
+    #if pp.places[mp] in adjectives and pp.chart[str([mc,mr])]
+    print 'the right response:', pp.places[mp], pp.chart[str([mc,mr])]
 
 """
 @ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
