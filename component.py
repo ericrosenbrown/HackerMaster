@@ -58,8 +58,23 @@ def checkpass(stepone,steptwo,stepthree):
     mc = str(session.attributes['c'])
     mr = str(session.attributes['r'])
     mp = str(session.attributes['p'])
-    #if pp.places[mp] in adjectives and pp.chart[str([mc,mr])]
-    print 'the right response:', pp.places[mp], pp.chart[str([mc,mr])]
+    action = "there was no action"
+    print mc
+    print pp.adjectives
+    print pp.colors
+
+    print mr
+    print pp.animals
+    print pp.people
+    if mc in pp.adjectives and mr in pp.animals:
+        action = "walks alone"
+    if mc in pp.colors and mr in pp.animals:
+        action = "has landed"
+    if mc in pp.adjectives and mr in pp.people:
+        action = "is in danger"
+    if mc in pp.colors and mr in pp.people:
+        action = "is waiting"
+    print 'the right response:', pp.places[mp], pp.chart[str([mc,mr])], action
 
 """
 @ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
