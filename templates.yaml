@@ -5,6 +5,6 @@ round: Would you like an easy or a hard safe?
 
 win: Good job!
 
-set_diff: you set the difficulty to {{ diff[0] }}.
+set_diff: you set the difficulty to {{ diff[0] }}. Here is your pass phrase. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
 
 lose: Sorry, that's the wrong answer.

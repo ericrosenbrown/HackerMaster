@@ -1,6 +1,8 @@
 import logging
+import passphrase as pp
 
 from random import randint
+import random
 
 from flask import Flask, render_template
 
@@ -39,9 +41,23 @@ def next_round():
 @ask.intent("SetDifficultyIntent", convert={'difficulty': str})
 
 def setdif(difficulty):
-    msg = render_template('set_diff', diff = [difficulty])
+    r = random.choice(pp.row)
+    c = random.choice(pp.col)
+    p = random.choice(pp.places.keys())
+    session.attributes['r'] = r
+    session.attributes['c'] = c
+    session.attributes['p'] = p
+    
+    msg = render_template('set_diff', diff = [difficulty,c,r,p])
     return question(msg)
 
+@ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
+
+def checkpass(stepone,steptwo,stepthree):
+    print 'their response: ',stepone, steptwo, stepthree
+    print 'the right response:', pp.chart[str([str(session.attributes['c']),str(session.attributes['r'])])], pp.places[str(session.attributes['p'])]
+
+"""
 @ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
 
 def answer(first, second, third):
@@ -57,7 +73,7 @@ def answer(first, second, third):
         msg = render_template('lose')
 
     return statement(msg)
-
+"""
 
 if __name__ == '__main__':
 
