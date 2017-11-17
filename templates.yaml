@@ -5,4 +5,6 @@ round: Would you like an easy or a hard safe?
 
 win: Good job!
 
+set_diff: you set the difficulty to {{ diff[0] }}.
+
 lose: Sorry, that's the wrong answer.

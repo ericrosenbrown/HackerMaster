@@ -36,6 +36,12 @@ def next_round():
     return question(round_msg)
 
 
+@ask.intent("SetDifficultyIntent", convert={'difficulty': str})
+
+def setdif(difficulty):
+    msg = render_template('set_diff', diff = [difficulty])
+    return question(msg)
+
 @ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
 
 def answer(first, second, third):
