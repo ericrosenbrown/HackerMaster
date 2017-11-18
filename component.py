@@ -21,6 +21,7 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 def new_game():
 
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
+    session.attributes['in_game'] = False
 
     return question(welcome_msg)
 
@@ -28,16 +29,21 @@ def new_game():
 @ask.intent("YesIntent")
 
 def next_round():
-    session.attributes['lives'] = 3
-    r = random.choice(pp.row)
-    c = random.choice(pp.col)
-    p = random.choice(pp.places.keys())
-    session.attributes['r'] = r
-    session.attributes['c'] = c
-    session.attributes['p'] = p
+    if session.attributes['in_game'] == False:
+        session.attributes['lives'] = 3
+        r = random.choice(pp.row)
+        c = random.choice(pp.col)
+        p = random.choice(pp.places.keys())
+        session.attributes['r'] = r
+        session.attributes['c'] = c
+        session.attributes['p'] = p
+
+        session.attributes['in_game'] = True
     
-    msg = render_template('set_diff', diff = [c,r,p])
-    return question(msg)
+        msg = render_template('set_diff', diff = [c,r,p])
+        return question(msg)
+    if session.attributes['in_game'] == True:
+        return checkpass('dummy','dummy','dummy')
 
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
 
@@ -70,6 +76,7 @@ def checkpass(stepone,steptwo,stepthree):
     
     if rr == tr:
         msg = render_template('correct')
+        session.attributes['in_game'] = False
     else:
         session.attributes['lives'] -= 1
         life = session.attributes['lives']
