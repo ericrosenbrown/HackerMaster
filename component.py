@@ -29,14 +29,14 @@ def my_output_speech(speech):
 @ask.launch
 def new_game():
     session.attributes['in_game'] = False
-    welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
-    #stream_url = 'https://archive.org/download/mailboxbadgerdrumsamplesvolume2/Submarine.mp3'
-    stream_url = 'https://www.vintagecomputermusic.com/mp3/s2t9_Computer_Speech_Demonstration.mp3'
-    return_value = audio(welcome_msg).play(stream_url)
-    return_value._response['shouldEndSession'] = False
-    reprompt = {'outputSpeech': my_output_speech('')}
-    return_value._response['reprompt'] = reprompt
-    return return_value
+    welcome_msg = render_template('welcome_with_audio', number=[str(randint(0,9))])
+    return question(welcome_msg)
+    # stream_url = 'https://www.david-whitney.com/wp-content/uploads/2017/11/openingaudio.mp3'
+    # return_value = audio(welcome_msg).play(stream_url)
+    # return_value._response['shouldEndSession'] = False
+    # reprompt = {'outputSpeech': my_output_speech('')}
+    # return_value._response['reprompt'] = reprompt
+    # return return_value
 
 
 @ask.intent("AMAZON.YesIntent")
@@ -62,6 +62,9 @@ def next_round():
 
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
 def checkpass(stepone,steptwo,stepthree):
+    stepone = str(stepone)
+    steptwo = str(steptwo)
+    stepthree = str(stepthree)
     print 'their response: ',stepone, steptwo, stepthree
     tr = stepone + " " + steptwo + " " + stepthree
     mc = str(session.attributes['c'])
