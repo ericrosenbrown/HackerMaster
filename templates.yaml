@@ -1,5 +1,11 @@
 welcome: Welcome secret agent {{ number[0] }}. Are you ready for your newest mission?
 
+welcome_with_audio: |
+  <speak>
+      <audio src='https://www.david-whitney.com/wp-content/uploads/2017/11/openingaudio.mp3'/>
+      Welcome secret agent {{ number[0] }}. Are you ready for your newest mission?
+  </speak>
+
 roundold: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
 round: Would you like an easy or a hard safe?
 
