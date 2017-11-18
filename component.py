@@ -18,25 +18,33 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 @ask.launch
 def new_game():
-
+    session.attributes['in_game'] = False
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
     stream_url = 'https://archive.org/download/mailboxbadgerdrumsamplesvolume2/Submarine.mp3'
+    return_value = audio(welcome_msg).play(stream_url)
+    return_value._response['shouldEndSession'] = True
+    return return_value
+
     #return question(welcome_msg)
-    return audio(welcome_msg).play(stream_url)
 
 
 @ask.intent("YesIntent")
 def next_round():
-    session.attributes['lives'] = 3
-    r = random.choice(pp.row)
-    c = random.choice(pp.col)
-    p = random.choice(pp.places.keys())
-    session.attributes['r'] = r
-    session.attributes['c'] = c
-    session.attributes['p'] = p
+    if session.attributes['in_game'] == False:
+        session.attributes['lives'] = 3
+        r = random.choice(pp.row)
+        c = random.choice(pp.col)
+        p = random.choice(pp.places.keys())
+        session.attributes['r'] = r
+        session.attributes['c'] = c
+        session.attributes['p'] = p
+
+        session.attributes['in_game'] = True
     
-    msg = render_template('set_diff', diff = [c,r,p])
-    return question(msg)
+        msg = render_template('set_diff', diff = [c,r,p])
+        return question(msg)
+    if session.attributes['in_game'] == True:
+        return checkpass('dummy','dummy','dummy')
 
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
 def checkpass(stepone,steptwo,stepthree):
@@ -68,11 +76,13 @@ def checkpass(stepone,steptwo,stepthree):
     
     if rr == tr:
         msg = render_template('correct')
+        session.attributes['in_game'] = False
     else:
         session.attributes['lives'] -= 1
         life = session.attributes['lives']
         if life == 0:
             msg = render_template('lose')
+            session.attributes['in_game'] = False
         else:
             msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
