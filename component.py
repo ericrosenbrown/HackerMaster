@@ -21,7 +21,6 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 def new_game():
 
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
-    session.attributes['lives'] = 3
 
     return question(welcome_msg)
 
@@ -29,6 +28,7 @@ def new_game():
 @ask.intent("YesIntent")
 
 def next_round():
+    session.attributes['lives'] = 3
 
     numbers = [randint(0, 9) for _ in range(3)]
 
@@ -86,7 +86,10 @@ def checkpass(stepone,steptwo,stepthree):
     else:
         session.attributes['lives'] -= 1
         life = session.attributes['lives']
-        msg = render_template('wrong', diff = [str(life),mc,mr,mp])
+        if life == 0:
+            msg = render_template('lose')
+        else:
+            msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
 
 """
