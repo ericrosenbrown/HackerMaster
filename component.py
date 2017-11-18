@@ -82,6 +82,7 @@ def checkpass(stepone,steptwo,stepthree):
         life = session.attributes['lives']
         if life == 0:
             msg = render_template('lose')
+            session.attributes['in_game'] = False
         else:
             msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
