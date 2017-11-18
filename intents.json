@@ -7,7 +7,19 @@
       "intent": "AMAZON.ResumeIntent"
     },
     {
-      "intent": "YesIntent"
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
     },
     {
       "intent": "AnswerIntent",

@@ -1,7 +1,7 @@
-YesIntent yes
-YesIntent I am ready
-YesIntent sure    
-YesIntent Go ahead
+AMAZON.YesIntent yes
+AMAZON.YesIntent I am ready
+AMAZON.YesIntent sure
+AMAZON.YesIntent Go ahead
 
 AnswerIntent {stepone} {steptwo} {stepthree}
 AnswerIntent The {stepone} {steptwo} {stepthree}
