@@ -3,6 +3,8 @@ welcome: Welcome secret agent {{ number[0] }}. Are you ready for your newest mis
 roundold: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
 round: Would you like an easy or a hard safe?
 
+correct: You are correct!
+wrong: You are wrong!
 win: Good job!
 
 set_diff: you set the difficulty to {{ diff[0] }}. Here is your pass phrase. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.

@@ -55,6 +55,7 @@ def setdif(difficulty):
 
 def checkpass(stepone,steptwo,stepthree):
     print 'their response: ',stepone, steptwo, stepthree
+    tr = stepone + " " + steptwo + " " + stepthree
     mc = str(session.attributes['c'])
     mr = str(session.attributes['r'])
     mp = str(session.attributes['p'])
@@ -74,7 +75,16 @@ def checkpass(stepone,steptwo,stepthree):
         action = "is in danger"
     if mc in pp.colors and mr in pp.people:
         action = "is waiting"
+
+    rr = pp.places[mp] + " " + pp.chart[str([mc,mr])] + " " + action
     print 'the right response:', pp.places[mp], pp.chart[str([mc,mr])], action
+    print rr == tr
+    
+    if rr == tr:
+        msg = render_template('correct')
+    else:
+        msg = render_template('wrong')
+    return question(msg)
 
 """
 @ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
