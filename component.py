@@ -6,7 +6,7 @@ import random
 
 from flask import Flask, render_template
 
-from flask_ask import Ask, statement, question, session
+from flask_ask import Ask, statement, question, session, context, audio, current_stream
 
 
 app = Flask(__name__)
@@ -17,16 +17,15 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 
 @ask.launch
-
 def new_game():
 
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
-
-    return question(welcome_msg)
+    stream_url = 'https://archive.org/download/mailboxbadgerdrumsamplesvolume2/Submarine.mp3'
+    #return question(welcome_msg)
+    return audio(welcome_msg).play(stream_url)
 
 
 @ask.intent("YesIntent")
-
 def next_round():
     session.attributes['lives'] = 3
     r = random.choice(pp.row)
@@ -40,7 +39,6 @@ def next_round():
     return question(msg)
 
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
-
 def checkpass(stepone,steptwo,stepthree):
     print 'their response: ',stepone, steptwo, stepthree
     tr = stepone + " " + steptwo + " " + stepthree
@@ -78,6 +76,11 @@ def checkpass(stepone,steptwo,stepthree):
         else:
             msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
+
+
+@ask.intent('AMAZON.PauseIntent')
+def pause():
+    return audio('').stop()
 
 
 if __name__ == '__main__':
