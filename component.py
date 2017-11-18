@@ -31,12 +31,6 @@ def new_game():
     session.attributes['in_game'] = False
     welcome_msg = render_template('welcome_with_audio', number=[str(randint(0,9))])
     return question(welcome_msg)
-    # stream_url = 'https://www.david-whitney.com/wp-content/uploads/2017/11/openingaudio.mp3'
-    # return_value = audio(welcome_msg).play(stream_url)
-    # return_value._response['shouldEndSession'] = False
-    # reprompt = {'outputSpeech': my_output_speech('')}
-    # return_value._response['reprompt'] = reprompt
-    # return return_value
 
 
 @ask.intent("AMAZON.YesIntent")
@@ -56,8 +50,6 @@ def next_round():
         return question(msg)
     if session.attributes['in_game'] == True:
         return checkpass('dummy','dummy','dummy')
-
-
 
 
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
@@ -111,7 +103,6 @@ def checkpass(stepone,steptwo,stepthree):
 @ask.intent('AMAZON.CancelIntent')
 def stop_audio_and_exit():
     return audio('').stop()
-
 
 
 if __name__ == '__main__':
