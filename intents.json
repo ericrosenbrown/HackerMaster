@@ -1,0 +1,33 @@
+{
+  "intents": [
+    {
+      "intent": "YesIntent"
+    },
+    {
+      "intent": "SetDifficultyIntent",
+      "slots": [
+        {
+          "name": "difficulty",
+          "type": "LIST_OF_DIFFICULTY"
+        }
+      ]
+    },
+    {
+      "intent": "AnswerIntent",
+      "slots": [
+        {
+          "name": "stepone",
+          "type": "LIST_STEPONE"
+        },
+        {
+          "name": "steptwo",
+          "type": "LIST_STEPTWO"
+        },
+        {
+          "name": "stepthree",
+          "type": "LIST_STEPTHREE"
+        }
+      ]
+    }
+  ]
+}
