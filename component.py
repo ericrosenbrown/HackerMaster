@@ -20,9 +20,10 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 def new_game():
     session.attributes['in_game'] = False
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
-    stream_url = 'https://archive.org/download/mailboxbadgerdrumsamplesvolume2/Submarine.mp3'
+    #stream_url = 'https://archive.org/download/mailboxbadgerdrumsamplesvolume2/Submarine.mp3'
+    stream_url = 'https://www.vintagecomputermusic.com/mp3/s2t9_Computer_Speech_Demonstration.mp3'
     return_value = audio(welcome_msg).play(stream_url)
-    return_value._response['shouldEndSession'] = True
+    return_value._response['shouldEndSession'] = False
     return return_value
 
     #return question(welcome_msg)
@@ -90,7 +91,16 @@ def checkpass(stepone,steptwo,stepthree):
 
 @ask.intent('AMAZON.PauseIntent')
 def pause():
-    return audio('').stop()
+    return_value = audio('').stop()
+    return_value._response['shouldEndSession'] = True
+    return return_value
+
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return_value = audio('').stop()
+    return_value._response['shouldEndSession'] = True
+    return return_value
 
 
 if __name__ == '__main__':
