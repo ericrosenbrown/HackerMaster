@@ -21,6 +21,7 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 def new_game():
 
     welcome_msg = render_template('welcome', number=[str(randint(0,9))] )
+    session.attributes['lives'] = 3
 
     return question(welcome_msg)
 
@@ -83,7 +84,9 @@ def checkpass(stepone,steptwo,stepthree):
     if rr == tr:
         msg = render_template('correct')
     else:
-        msg = render_template('wrong')
+        session.attributes['lives'] -= 1
+        life = session.attributes['lives']
+        msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
 
 """

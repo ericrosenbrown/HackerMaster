@@ -4,7 +4,7 @@ roundold: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
 round: Would you like an easy or a hard safe?
 
 correct: You are correct!
-wrong: You are wrong!
+wrong: That was the wrong phrase, you now have {{ diff[0] }} lives. Here is your pass phrase again. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
 win: Good job!
 
 set_diff: you set the difficulty to {{ diff[0] }}. Here is your pass phrase. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
