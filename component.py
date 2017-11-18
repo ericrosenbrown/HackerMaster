@@ -39,20 +39,6 @@ def next_round():
     msg = render_template('set_diff', diff = [c,r,p])
     return question(msg)
 
-"""
-@ask.intent("SetDifficultyIntent", convert={'difficulty': str})
-
-def setdif(difficulty):
-    r = random.choice(pp.row)
-    c = random.choice(pp.col)
-    p = random.choice(pp.places.keys())
-    session.attributes['r'] = r
-    session.attributes['c'] = c
-    session.attributes['p'] = p
-    
-    msg = render_template('set_diff', diff = [difficulty,c,r,p])
-    return question(msg)
-"""
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
 
 def checkpass(stepone,steptwo,stepthree):
@@ -93,23 +79,6 @@ def checkpass(stepone,steptwo,stepthree):
             msg = render_template('wrong', diff = [str(life),mc,mr,mp])
     return question(msg)
 
-"""
-@ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
-
-def answer(first, second, third):
-
-    winning_numbers = session.attributes['numbers']
-
-    if [first, second, third] == winning_numbers:
-
-        msg = render_template('win')
-
-    else:
-
-        msg = render_template('lose')
-
-    return statement(msg)
-"""
 
 if __name__ == '__main__':
 

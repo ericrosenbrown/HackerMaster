@@ -10,15 +10,6 @@
       "intent": "YesIntent"
     },
     {
-      "intent": "SetDifficultyIntent",
-      "slots": [
-        {
-          "name": "difficulty",
-          "type": "LIST_OF_DIFFICULTY"
-        }
-      ]
-    },
-    {
       "intent": "AnswerIntent",
       "slots": [
         {
