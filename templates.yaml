@@ -7,6 +7,6 @@ correct: You are correct! Would you like the next passphrase?
 wrong: That was the wrong phrase, you now have {{ diff[0] }} lives. Here is your pass phrase again. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
 win: Good job!
 
-set_diff: you set the difficulty to {{ diff[0] }}. Here is your pass phrase. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
+set_diff: Here is your pass phrase. The {{ diff[0] }} {{ diff[1] }} is in {{ diff[2] }}.
 
 lose: Sorry, you have ran out of lives. Would you like to play again?

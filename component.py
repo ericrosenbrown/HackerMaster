@@ -29,16 +29,17 @@ def new_game():
 
 def next_round():
     session.attributes['lives'] = 3
+    r = random.choice(pp.row)
+    c = random.choice(pp.col)
+    p = random.choice(pp.places.keys())
+    session.attributes['r'] = r
+    session.attributes['c'] = c
+    session.attributes['p'] = p
+    
+    msg = render_template('set_diff', diff = [c,r,p])
+    return question(msg)
 
-    numbers = [randint(0, 9) for _ in range(3)]
-
-    round_msg = render_template('round', numbers=numbers)
-
-    session.attributes['numbers'] = numbers[::-1]  # reverse
-
-    return question(round_msg)
-
-
+"""
 @ask.intent("SetDifficultyIntent", convert={'difficulty': str})
 
 def setdif(difficulty):
@@ -51,7 +52,7 @@ def setdif(difficulty):
     
     msg = render_template('set_diff', diff = [difficulty,c,r,p])
     return question(msg)
-
+"""
 @ask.intent("AnswerIntent", convert={'stepone': str, 'steptwo': str, 'stepthree': str})
 
 def checkpass(stepone,steptwo,stepthree):
