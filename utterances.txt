@@ -1,0 +1,12 @@
+YesIntent yes
+YesIntent I am ready
+YesIntent sure    
+YesIntent Go ahead
+
+SetDifficultyIntent a {difficulty} one
+SetDifficultyIntent I would like a {difficulty} please
+SetDifficultyIntent {difficulty} please
+SetDifficultyIntent give me a {difficulty} safe
+
+AnswerIntent {stepone} {steptwo} {stepthree}
+AnswerIntent The {stepone} {steptwo} {stepthree}
