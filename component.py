@@ -8,7 +8,7 @@ from xml.etree import ElementTree
 
 from flask import Flask, render_template
 
-from flask_ask import Ask, statement, question, session, context, audio, current_stream
+from flask_ask import Ask, statement, question, session
 
 
 app = Flask(__name__)
@@ -30,10 +30,11 @@ def my_output_speech(speech):
 def new_game():
     session.attributes['in_game'] = False
     welcome_msg = render_template('welcome_with_audio', number=[str(randint(0,9))])
-    return question(welcome_msg)
+    return question(welcome_msg).standard_card(title='Hacker Manual', text='URL to manual')
 
 
 def generate_secure_phassphrase():
+    random.seed()
     secure_noun = random.choice(pp.row)
     secure_adjective = random.choice(pp.col)
     secure_place = random.choice(pp.places.keys())
@@ -92,9 +93,9 @@ def checkpass(stepone,steptwo,stepthree):
         msg = render_template('answer_with_no_question')
         return question(msg)
 
-    stepone = str(stepone)
-    steptwo = str(steptwo)
-    stepthree = str(stepthree)
+    stepone = str(stepone).lower()
+    steptwo = str(steptwo).lower()
+    stepthree = str(stepthree).lower()
     print 'their response: ',stepone, steptwo, stepthree
     their_response = stepone + " " + steptwo + " " + stepthree
     secure_adjective = str(session.attributes['secure_adjective'])
@@ -130,13 +131,16 @@ def checkpass(stepone,steptwo,stepthree):
             msg = render_template('wrong', secure_passphrase=[str(life), secure_adjective, secure_noun, secure_place])
     return question(msg)
 
+@ask.intent("SendPdfIntent")
+def send_pdf_card():
+    return question('Say yes when you have the hacker manual').standard_card(title='Hacker Manual', text='URL to manual')
 
 @ask.intent('AMAZON.NoIntent')
 @ask.intent('AMAZON.PauseIntent')
 @ask.intent('AMAZON.StopIntent')
 @ask.intent('AMAZON.CancelIntent')
 def stop_audio_and_exit():
-    return audio('').stop()
+    return statement('')
 
 
 if __name__ == '__main__':

@@ -5,3 +5,10 @@ AMAZON.YesIntent Go ahead
 
 AnswerIntent {stepone} {steptwo} {stepthree}
 AnswerIntent The {stepone} {steptwo} {stepthree}
+
+SendPdfIntent send the hacker manual
+SendPdfIntent give me the manual
+SendPdfIntent I need the the manual
+SendPdfIntent I would like one
+SendPdfIntent the hacker manual
+SendPdfIntent please give me the hacker manual
