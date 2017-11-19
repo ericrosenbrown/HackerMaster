@@ -1,18 +1,20 @@
-welcome: Welcome secret agent {{ number[0] }}. Are you ready for your newest mission?
+welcome: Welcome hacker number {{ number[0] }}. Are you ready to start hacking the mainframe?
 
 welcome_with_audio: |
   <speak>
       <audio src='https://www.david-whitney.com/wp-content/uploads/2017/11/openingaudio.mp3'/>
-      Welcome secret agent {{ number[0] }}. Are you ready for your newest mission?
+      Welcome hacker number {{ number[0] }}. Are you ready to start hacking the mainframe?
   </speak>
 
-roundold: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
-round: Would you like an easy or a hard safe?
 
-correct: You are correct! Would you like the next passphrase?
-wrong: That was the wrong phrase, you now have {{ diff[0] }} lives. Here is your pass phrase again. The {{ diff[1] }} {{ diff[2] }} is in {{ diff[3] }}.
-win: Good job!
+correct: You are correct! You've hacked {{secure_passphrase[0]}} percent of the mainframe. Your next pass phrase is {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} is in {{ secure_passphrase[3] }}
 
-set_diff: Here is your pass phrase. The {{ diff[0] }} {{ diff[1] }} is in {{ diff[2] }}.
+wrong: That was the wrong phrase, {{ secure_passphrase[0] }} more errors until system boot. Here is the pass phrase again. The {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} is in {{ secure_passphrase[3] }}.
 
-lose: Sorry, you have ran out of lives. Would you like to play again?
+win: The mainframe is hacked, good job. Would you like to hack another system?
+
+set_secure_passphrase: Here is your pass phrase. The {{ secure_passphrase[0] }} {{ secure_passphrase[1] }} is in {{ secure_passphrase[2] }}.
+
+lose: Your V P N has been taken down, you have been booted from the system. Would you like to try again?
+
+answer_with_no_question: You're not currently hacking anything. Would you like to start a hack?

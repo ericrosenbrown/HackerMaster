@@ -34,7 +34,7 @@ places = {
 'wind tunnel':'fake',
 'fort ticonderoga':'violent',
 'nightclub':'great',
-'zoo':'imanginary'}
+'zoo':'imaginary'}
 
 chart = { 
 repr(['blue','eagle']):'interviewer',
