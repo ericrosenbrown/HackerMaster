@@ -17,6 +17,8 @@ ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
+pdf_url = 'https://www.david-whitney.com/wp-content/uploads/2017/11/hackermaster.pdf'
+
 def my_output_speech(speech):
     try:
         xmldoc = ElementTree.fromstring(speech)
@@ -30,7 +32,7 @@ def my_output_speech(speech):
 def new_game():
     session.attributes['in_game'] = False
     welcome_msg = render_template('welcome_with_audio', number=[str(randint(0,9))])
-    return question(welcome_msg).standard_card(title='Hacker Manual', text='URL to manual')
+    return question(welcome_msg).standard_card(title='Hacker Manual', text=pdf_url)
 
 
 def generate_secure_phassphrase():
@@ -56,6 +58,7 @@ def get_right_response(secure_adjective, secure_noun, secure_place):
     print pp.chart[str([secure_adjective, secure_noun])]
     print secret_action
     return '{} {} {}'.format(pp.places[secure_place], pp.chart[str([secure_adjective, secure_noun])], secret_action)
+
 
 @ask.intent("AMAZON.YesIntent")
 def next_round():
@@ -133,13 +136,13 @@ def checkpass(stepone,steptwo,stepthree):
 
 @ask.intent("SendPdfIntent")
 def send_pdf_card():
-    return question('Say yes when you have the hacker manual').standard_card(title='Hacker Manual', text='URL to manual')
+    return question('Say yes when you have the hacker manual').standard_card(title='Hacker Manual', text=pdf_url)
 
 @ask.intent('AMAZON.NoIntent')
 @ask.intent('AMAZON.PauseIntent')
 @ask.intent('AMAZON.StopIntent')
 @ask.intent('AMAZON.CancelIntent')
-def stop_audio_and_exit():
+def exit_skill():
     return statement('')
 
 
