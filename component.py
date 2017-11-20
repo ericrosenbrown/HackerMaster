@@ -17,7 +17,7 @@ ask = Ask(app, "/")
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
-pdf_url = 'https://www.david-whitney.com/wp-content/uploads/2017/11/hackermaster.pdf'
+pdf_url = 'Go to playhackermaster.com for the Hacker Manual.'
 
 def my_output_speech(speech):
     try:
@@ -32,10 +32,12 @@ def my_output_speech(speech):
 def new_game():
     session.attributes['in_game'] = False
     welcome_msg = render_template('welcome_with_audio', number=[str(randint(0,9))])
-    return question(welcome_msg).standard_card(title='Hacker Manual', text=pdf_url)
+    return question(welcome_msg).standard_card(title='Hacker Manual', text=pdf_url,
+                                               small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
+                                               large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
 
 
-def generate_secure_phassphrase():
+def generate_secure_passphrase():
     random.seed()
     secure_noun = random.choice(pp.row)
     secure_adjective = random.choice(pp.col)
@@ -65,7 +67,7 @@ def next_round():
     if session.attributes['in_game'] == False:
         session.attributes['lives'] = 3
         session.attributes['current_round'] = 0
-        secure_noun, secure_adjective, secure_place = generate_secure_phassphrase()
+        secure_noun, secure_adjective, secure_place = generate_secure_passphrase()
         session.attributes['secure_noun'] = secure_noun
         session.attributes['secure_adjective'] = secure_adjective
         session.attributes['secure_place'] = secure_place
@@ -76,9 +78,9 @@ def next_round():
         right_response = get_right_response(secure_adjective, secure_noun, secure_place)
         print 'the right response: {}'.format(right_response)
 
-
         return question(msg)
-    elif session.attributes['in_game'] == True:
+
+    elif session.attributes['in_game']:
         return checkpass('dummy', 'dummy', 'dummy')
 
 
@@ -117,7 +119,7 @@ def checkpass(stepone,steptwo,stepthree):
             msg = render_template('win')
             session.attributes['in_game'] = False
         else:
-            secure_noun, secure_adjective, secure_place = generate_secure_phassphrase()
+            secure_noun, secure_adjective, secure_place = generate_secure_passphrase()
             session.attributes['secure_noun'] = secure_noun
             session.attributes['secure_adjective'] = secure_adjective
             session.attributes['secure_place'] = secure_place
@@ -136,9 +138,18 @@ def checkpass(stepone,steptwo,stepthree):
 
 @ask.intent("SendPdfIntent")
 def send_pdf_card():
-    return question('Say yes when you have the hacker manual').standard_card(title='Hacker Manual', text=pdf_url)
+    if session.attributes['in_game']:
+        return checkpass('dummy', 'dummy', 'dummy')
+    else:
+        return question('Say yes when you have the hacker manual')\
+            .standard_card(title='Hacker Manual', text=pdf_url,
+                           small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
+                           large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
 
 @ask.intent('AMAZON.NoIntent')
+def no_goodbye():
+    return statement('goodbye')
+
 @ask.intent('AMAZON.PauseIntent')
 @ask.intent('AMAZON.StopIntent')
 @ask.intent('AMAZON.CancelIntent')

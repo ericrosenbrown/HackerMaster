@@ -156,3 +156,5 @@ crashlytics-build.properties
 fabric.properties
 
 zappa_settings.json
+
+.DS_store

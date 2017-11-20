@@ -3,17 +3,127 @@ welcome: Welcome hacker number {{ number[0] }}. Are you ready to start hacking t
 welcome_with_audio: |
   <speak>
       <audio src='https://www.david-whitney.com/wp-content/uploads/2017/11/openingaudio.mp3'/>
-      Welcome hacker number {{ number[0] }}. Are you ready to start hacking the mainframe?
+      Welcome hacker number {{ number[0] }}. I have sent you a card via the alexa app with the hacker manual.
+      Are you ready to start hacking the mainframe?
   </speak>
 
+more_time : |
+  <speak>
+    pass phrase in ten seconds
+    <break time="1s"/>
+    ten
+    <break time="1s"/>
+    nine
+    <break time="1s"/>
+    eight
+    <break time="1s"/>
+    seven
+    <break time="1s"/>
+    six
+    <break time="1s"/>
+    five
+    <break time="1s"/>
+    four
+    <break time="1s"/>
+    three
+    <break time="1s"/>
+    two
+    <break time="1s"/>
+    one
+    <break time="1s"/>
+    say pass phrase now
+  </speak>
 
-correct: You are correct! You've hacked {{secure_passphrase[0]}} percent of the mainframe. Your next pass phrase is {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} is in {{ secure_passphrase[3] }}
+correct: |
+  <speak>
+    You are correct! You've hacked {{secure_passphrase[0]}} percent of the mainframe.
+    Your next pass phrase is the <prosody rate="slow"> {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} {{ secure_passphrase[3] }} </prosody>
+    <break time="0.5s"/>
+    pass phrase input in ten seconds
+    <break time="1s"/>
+    ten
+    <break time="1s"/>
+    nine
+    <break time="1s"/>
+    eight
+    <break time="1s"/>
+    seven
+    <break time="1s"/>
+    six
+    <break time="1s"/>
+    five
+    <break time="1s"/>
+    four
+    <break time="1s"/>
+    three
+    <break time="1s"/>
+    two
+    <break time="1s"/>
+    one
+    <break time="1s"/>
+    say pass phrase now
+  </speak>
 
-wrong: That was the wrong phrase, {{ secure_passphrase[0] }} more errors until system boot. Here is the pass phrase again. The {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} is in {{ secure_passphrase[3] }}.
+wrong: |
+  <speak>
+    That was the wrong phrase, {{ secure_passphrase[0] }} more errors until system boot. Here is the pass phrase again.
+    The <prosody rate="slow"> {{ secure_passphrase[1] }} {{ secure_passphrase[2] }} {{ secure_passphrase[3] }}. </prosody>
+    <break time="0.5s"/>
+    pass phrase input in ten seconds
+    <break time="1s"/>
+    ten
+    <break time="1s"/>
+    nine
+    <break time="1s"/>
+    eight
+    <break time="1s"/>
+    seven
+    <break time="1s"/>
+    six
+    <break time="1s"/>
+    five
+    <break time="1s"/>
+    four
+    <break time="1s"/>
+    three
+    <break time="1s"/>
+    two
+    <break time="1s"/>
+    one
+    <break time="1s"/>
+    say pass phrase now
+  </speak>
 
 win: The mainframe is hacked, good job. Would you like to hack another system?
 
-set_secure_passphrase: Here is your pass phrase. The {{ secure_passphrase[0] }} {{ secure_passphrase[1] }} is in {{ secure_passphrase[2] }}.
+set_secure_passphrase: |
+  <speak>
+    Here is your pass phrase. The <prosody rate="slow"> {{ secure_passphrase[0] }} {{ secure_passphrase[1] }} {{ secure_passphrase[2] }}. </prosody>
+    <break time="0.5s"/>
+    pass phrase input in ten seconds
+    <break time="1s"/>
+    ten
+    <break time="1s"/>
+    nine
+    <break time="1s"/>
+    eight
+    <break time="1s"/>
+    seven
+    <break time="1s"/>
+    six
+    <break time="1s"/>
+    five
+    <break time="1s"/>
+    four
+    <break time="1s"/>
+    three
+    <break time="1s"/>
+    two
+    <break time="1s"/>
+    one
+    <break time="1s"/>
+    say pass phrase now
+  </speak>
 
 lose: Your V P N has been taken down, you have been booted from the system. Would you like to try again?
 
