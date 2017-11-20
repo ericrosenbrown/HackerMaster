@@ -141,7 +141,7 @@ def send_pdf_card():
     if session.attributes['in_game']:
         return checkpass('dummy', 'dummy', 'dummy')
     else:
-        return question('Say yes when you have the hacker manual')\
+        return question('Sending the manual to your alexa app. Say yes when you have the hacker manual')\
             .standard_card(title='Hacker Manual', text=pdf_url,
                            small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
                            large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
