@@ -3,21 +3,43 @@
   <head>
     <title>Hacker Master</title>
     <!-- Required meta tags -->
+    <!--<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">-->
     <link href="css/hacker.css" rel="stylesheet">
+
+    <style>
+    .tall-row {
+        margin-top: 40px;
+    }
+    .modal {
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        z-index: 1;
+        display: block;
+    }
+    </style>
+
+
   </head>
   <body>
     <div class="container">
         <!-- Jumbotron -->
         <div class="jumbotron">
-          <div class="col-md-4 text-center"> 
-            <h1>Hacker Master</h1>
+          
+            <h1>Hacker Master, The Game!</h1>
+            <p>A hacker-themed puzzle game where you must figure out the pass phrase to hack into a mainframe.</p>
             <p>Can you help Alexa hack into the mainframe?</p>
-            <p>Read the manual and get the decryption tables below</p>
+            <p>Listen to the input phrase Alexa tells you and cross reference what she said to what appears in your hacker manual to figure out the correct response.</p>
+            <p>Read the rules manual and get the decryption tables below</p>
             <p> 
                 <a class="btn btn-lg btn-primary" href="https://s3.amazonaws.com/playhackermaster.com/manual.pdf" role="button">Manual</a>
             </p>
@@ -25,9 +47,13 @@
                 <a class="btn btn-lg btn-primary" href="https://s3.amazonaws.com/playhackermaster.com/decryption_tables.png" role="button">Decryption Tables</a>
             </p>
 
-          </div>
+          
         </div>
-
+        <div class="row tall-row">
+            <div class="col-md-12">
+                <p>Created by <a href="//david-whitney.com">David Whitney</a>. &copy; 2017</p>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
