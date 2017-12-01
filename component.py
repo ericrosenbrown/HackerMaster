@@ -156,7 +156,7 @@ def exit_skill():
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
-    session.attributes['in_game'] == False
+    session.attributes['in_game'] = False
     return question("In this game, listen to the input phrase Alexa tells you and cross reference what " + 
         "she said to what appears in your hacker manual to figure out the correct response. I am sending " + 
         "the manual to your alexa app. Say ready when you have the hacker manual and we'll start the game.")\
