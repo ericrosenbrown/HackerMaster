@@ -76,7 +76,7 @@ def next_round():
         msg = render_template('set_secure_passphrase', secure_passphrase=[secure_adjective,secure_noun,secure_place])
 
         right_response = get_right_response(secure_adjective, secure_noun, secure_place)
-        print 'the right response: {}'.format(right_response)
+        session.attributes['right_response'] = right_response
 
         return question(msg)
 
@@ -125,7 +125,7 @@ def checkpass(stepone,steptwo,stepthree):
             session.attributes['secure_place'] = secure_place
             msg = render_template('correct', secure_passphrase=[str(session.attributes['current_round'] * 20),
                                                                 secure_adjective, secure_noun, secure_place])
-            print get_right_response(secure_adjective, secure_noun, secure_place)
+            session.attributes['right_response'] = get_right_response(secure_adjective, secure_noun, secure_place)
     else:
         session.attributes['lives'] -= 1
         life = session.attributes['lives']
