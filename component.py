@@ -138,17 +138,11 @@ def checkpass(stepone,steptwo,stepthree):
 
 @ask.intent('SendPdfIntent')
 def send_pdf_card():
-    try:
-        in_game = session.attributes['in_game']
-    except:
-        in_game = False
-    if in_game:
-        return checkpass('dummy', 'dummy', 'dummy')
-    else:
-        return question('Sending the manual to your alexa app. Say ready when you have the hacker manual')\
-            .standard_card(title='Hacker Manual', text=pdf_url,
-                           small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
-                           large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
+    session.attributes['in_game'] = False
+    return question('Sending the manual to your alexa app. Say ready when you have the hacker manual.')\
+        .standard_card(title='Hacker Manual', text=pdf_url,
+                        small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
+                        large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
 
 @ask.intent('AMAZON.NoIntent')
 def no_goodbye():
