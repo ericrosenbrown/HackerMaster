@@ -136,12 +136,16 @@ def checkpass(stepone,steptwo,stepthree):
             msg = render_template('wrong', secure_passphrase=[str(life), secure_adjective, secure_noun, secure_place])
     return question(msg)
 
-@ask.intent("SendPdfIntent")
+@ask.intent('SendPdfIntent')
 def send_pdf_card():
-    if session.attributes['in_game']:
+    try:
+        in_game = session.attributes['in_game']
+    except:
+        in_game = False
+    if in_game:
         return checkpass('dummy', 'dummy', 'dummy')
     else:
-        return question('Sending the manual to your alexa app. Say yes when you have the hacker manual')\
+        return question('Sending the manual to your alexa app. Say ready when you have the hacker manual')\
             .standard_card(title='Hacker Manual', text=pdf_url,
                            small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
                            large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
@@ -155,6 +159,15 @@ def no_goodbye():
 @ask.intent('AMAZON.CancelIntent')
 def exit_skill():
     return statement('')
+
+@ask.intent('AMAZON.HelpIntent')
+def help():
+    return question("In this game, listen to the input phrase Alexa tells you and cross reference what " + 
+        "she said to what appears in your hacker manual to figure out the correct response. I am sending " + 
+        "the manual to your alexa app. Say ready when you have the hacker manual and we'll start the game.")\
+            .standard_card(title='Hacker Manual', text=pdf_url,
+                           small_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_small.png',
+                           large_image_url='https://s3.amazonaws.com/hackermasterhelper/hmicon_big.png')
 
 
 if __name__ == '__main__':
